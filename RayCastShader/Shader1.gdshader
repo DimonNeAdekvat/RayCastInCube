@@ -85,6 +85,7 @@ void fragment() {
 	size.x = size.z;
 	mat4 its = intersect(size,COLOR.xyz,dirv);
 	NORMAL = its[1].xyz;
+	DEPTH = its[1].w;
 	ALBEDO = its[0].rgb;
-	ALPHA = its[0].a*max(min(distance(cam,ver)-0.5,1.f),0.f);
+	ALPHA = its[0].a*max(min(distance(cam,ver)+DEPTH-0.5,1.f),0.f);
 }

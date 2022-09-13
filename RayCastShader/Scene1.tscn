@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Cube.gd" type="Script" id=1]
 [ext_resource path="res://GimbalCamera.gd" type="Script" id=2]
 [ext_resource path="res://Scene1.gd" type="Script" id=3]
+[ext_resource path="res://full_test.png" type="Texture" id=4]
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 3 )
@@ -18,7 +19,10 @@ current = true
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.5 )
 script = ExtResource( 1 )
+texture = ExtResource( 4 )
+size = Vector3( 8, 24, 8 )
+AutoScale = true
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.5 )
-script = ExtResource( 1 )
+[node name="Timer" type="Timer" parent="MeshInstance"]
+
+[connection signal="timeout" from="MeshInstance/Timer" to="MeshInstance" method="_on_Timer_timeout"]
